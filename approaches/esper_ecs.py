@@ -115,12 +115,20 @@ class AIProcessor(esper.Processor):
     """Updates AI behaviors."""
     
     def process(self, dt: float):
+        player_ent, (player_pos, player_tag) = list(esper.get_components(Position, PlayerTag))[0]
+
         for ent, (pos, vel, ai) in esper.get_components(Position, Velocity, AI):
             ai.decision_timer -= dt
             
             if ai.decision_timer <= 0:
-                ai.target_x = random.uniform(50, 750)
-                ai.target_y = random.uniform(50, 550)
+                if random.random() < 0.5:
+                    ai.behavior = "chase"
+                    ai.target_x = player_pos.x
+                    ai.target_y = player_pos.y
+                else:
+                    ai.behavior = "wander"
+                    ai.target_x = random.uniform(50, 750)
+                    ai.target_y = random.uniform(50, 550)
                 ai.decision_timer = random.uniform(1, 3)
             
             dx = ai.target_x - pos.x
