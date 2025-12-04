@@ -14,10 +14,18 @@ This project compares four different approaches to game architecture:
 ## Quick Start
 
 ```bash
-# Install dependencies
-pip install esper --break-system-packages
+# Install dependencies using uv (recommended)
+uv venv --python 3.12
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+uv pip install -r requirements.txt
 
-# Run the full demo
+# Or using pip
+pip install pygame esper
+
+# Run the Pygame visualization (recommended for visual learners!)
+python pygame_demo.py
+
+# Run the text-based demo with benchmarks
 python main_demo.py
 
 # Run individual approaches
@@ -103,13 +111,34 @@ The `presentation/` folder contains:
 - **ECS_PRESENTATION.md**: Full 30-minute slide deck in Markdown
 - **SPEAKER_NOTES.md**: Teaching notes, exercises, and discussion questions
 
+## Pygame Visualization
+
+The project now includes an interactive Pygame visualization that demonstrates ECS concepts in action!
+
+Run it with:
+```bash
+python pygame_demo.py
+```
+
+Features:
+- Visual representation of entities (player, enemies, projectiles)
+- Real-time ECS system updates
+- Interactive controls (keyboard + mouse)
+- HUD showing health, score, and entity counts
+- Live demonstration of component composition and systems working together
+
+Controls:
+- Arrow Keys / WASD: Move player (green circle)
+- Mouse Click: Shoot projectiles at cursor
+- SPACE: Spawn additional enemy
+- R: Restart game
+- ESC: Quit
+
 ## Dependencies
 
-- Python 3.8+
-- esper (`pip install esper`)
-
-Optional for pygame visualization (not required for demo):
+- Python 3.12+ (for Pygame compatibility)
 - pygame (`pip install pygame`)
+- esper (`pip install esper`)
 
 ## Further Reading
 
